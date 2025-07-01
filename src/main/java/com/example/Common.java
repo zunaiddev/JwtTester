@@ -3,7 +3,7 @@ package com.example;
 import javax.swing.*;
 import java.awt.*;
 
-public class Utils {
+public class Common {
     public static JTextField getInputField() {
         JTextField textField = new JTextField();
         textField.setMaximumSize(new Dimension(300, 30));
@@ -17,5 +17,24 @@ public class Utils {
         ));
 
         return textField;
+    }
+
+    public static JButton getButton(String text) {
+        JButton button = new JButton(text);
+        button.setFocusPainted(false);
+        button.setBackground(new Color(70, 70, 70));
+        button.setForeground(Color.WHITE);
+        button.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+        button.setPreferredSize(new Dimension(150, 30));
+        button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+        return button;
+    }
+
+    public static JLabel getLabel(String text) {
+        JLabel label = new JLabel(text);
+        label.setForeground(Color.WHITE);
+
+        return label;
     }
 }
