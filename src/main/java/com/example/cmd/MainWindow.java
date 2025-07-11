@@ -3,24 +3,17 @@ package com.example.cmd;
 import java.util.Scanner;
 
 public class MainWindow {
-    public static final String RESET = "\u001B[0m";
-    public static final String BOLD = "\u001B[1m";
-    public static final String RED = "\u001B[31m";
-    public static final String GREEN = "\u001B[32m";
-    public static final String BLUE = "\u001B[34m";
-    public static final String UNDERLINE = "\u001B[4m";
-    public static final String Yellow = "\u001B[33m";
-    public static final String CYAN = "\u001B[36m";
     private final Scanner scan = new Scanner(System.in);
 
     public int mainMenu() {
-        System.out.println(BLUE + "====== Main Menu ======");
+        System.out.println("""
+                ====== Main Menu ======
+                Note: Enter -1 anywhere to exit!""");
 
         System.out.println("""
                 pick one option:
                  1. Code Token
-                 2. Decode Token
-                 3. Exit""");
+                 2. Decode Token""");
 
         int choice = -1;
 
@@ -30,20 +23,18 @@ public class MainWindow {
             try {
                 choice = scan.nextInt();
             } catch (Exception e) {
-                System.out.println(RED + "Invalid Input!");
+                System.out.println("Invalid Input!");
             } finally {
                 scan.nextLine();
             }
-
-            if (choice >= 1 && choice <= 3) return choice;
-            else System.out.println(RED + "Invalid Choice!");
+            if (choice >= -1 && choice < 3) return choice;
+            else System.out.println("Invalid Choice!");
         }
     }
 
     public String decodeMenu() {
         String token;
-        System.out.println("==== Decode Menu ====");
-        System.out.println("-1 to Exit: ");
+        System.out.println("\n==== Decode Menu ====");
 
         System.out.print("Enter JWT Token: ");
         token = scan.nextLine();
@@ -54,8 +45,7 @@ public class MainWindow {
 
     public String codeMenu() {
         String secretKey;
-        System.out.println("==== Code Menu ====");
-        System.out.println("-1 to Exit: ");
+        System.out.println("\n==== Code Menu ====");
 
         while (true) {
             System.out.print("Enter Secret Key: ");
@@ -63,7 +53,7 @@ public class MainWindow {
 
             if (secretKey.equals("-1")) return null;
 
-            if (secretKey.length() < 32) System.out.println(RED + "Enter a Strong Key: " + RESET);
+            if (secretKey.length() < 32) System.out.println("Enter a Strong Key: ");
             else return secretKey;
         }
     }
